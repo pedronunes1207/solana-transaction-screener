@@ -4,7 +4,7 @@ const path = require('path');
 
 const API_KEY = '2cfb6ef9-17ad-42b7-b7e2-aa2ab65857b7';
 const BASE_URL = 'https://api.helius.xyz/v0/addresses/sharpwLgpgdjgky2RMntZxR1LHuE6hnzwzUXpMsbUy4/transactions';
-const TRANSACTIONS_FILE = path.join(__dirname, 'transactions.json');
+const TRANSACTIONS_FILE = path.join(__dirname, '../transactions.json');
 
 const fetchTransactions = async (before = null) => {
   const response = await axios.get(BASE_URL, {
