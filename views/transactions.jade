@@ -3,6 +3,7 @@ extends layout
 block content
   h1 Transactions
   p Number of Transactions: #{transactions.length}
+  a(href="/export") Export Txt File
   ul
     each transaction in transactions
       li

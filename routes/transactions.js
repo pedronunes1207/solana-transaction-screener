@@ -42,4 +42,27 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// Route to handle exporting transactions as a text file
+router.get('/export', async (req, res, next) => {
+  try {
+    // Load cached transactions from the file
+    const transactions = loadTransactionsFromFile();
+
+    // Prepare text content for export
+    let textContent = 'Signature\tFee Payer\tTimestamp (UTC)\n';
+    transactions.forEach(transaction => {
+      textContent += `${transaction.signature}\t${transaction.feePayer}\t${new Date(transaction.timestamp * 1000).toISOString()}\n`;
+    });
+
+    // Set response headers for file download
+    res.setHeader('Content-disposition', 'attachment; filename=transactions.txt');
+    res.setHeader('Content-type', 'text/plain');
+
+    // Send text content as response
+    res.send(textContent);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
