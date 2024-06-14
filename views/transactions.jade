@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Transactions
+  p Number of Transactions: #{transactions.length}
+  ul
+    each transaction in transactions
+      li
+        p Signature: #{transaction.signature}
+        p Signer: #{transaction.feePayer}
+        p Timestamp (UTC): #{new Date(transaction.timestamp * 1000).toISOString()}
